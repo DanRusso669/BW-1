@@ -1,0 +1,39 @@
+body {
+  margin-inline: 5rem;
+  margin-block: 5rem;
+  margin-bottom: 0;
+}
+
+main {
+  text-align: center;
+  padding-top: 0;
+}
+main h1 {
+  font-size: 40px;
+  font-weight: 400;
+  padding-bottom: 3rem;
+}
+h1 span {
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  margin-top: 8rem;
+}
+button {
+  width: 20rem;
+  height: 3.5rem;
+  border-radius: 30px;
+  background: #be92922b;
+  color: white;
+  margin-bottom: 0.5rem;
+  border-color: #fef9fc;
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  border: 5px solid;
+}
+footer img {
+  margin-inline: 5rem;
+  margin-block: 5rem;
+}
