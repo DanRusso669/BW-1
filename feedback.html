@@ -8,14 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="stylesheet" href="./assets/style-feedback.css" />
 
     <title>FeedBack</title>
   </head>
   <body>
-    <header><img src="./assets/epicode_logo.png" alt="logo" /></header>
+    <header><img id="logo" src="./assets/epicode_logo.png" alt="logo" /></header>
+
     <main>
       <div>
-        <h1>Tell us how it's going</h1>
+        <h1 class="boldWords">Tell us how it's going</h1>
         <p>
           From 0 to 10, how likely are you to recommend EPICODE <br />
           to a friend or a colleague?
@@ -28,12 +30,14 @@
         <p>Leave us an open feedback about your experience so far</p>
 
         <div>
-          <!--class="feedback-container"-->
-          <label for="feedback">Write your comment here</label>
-          <input type="text" id="feedback" placeholder="Write your comment here" />
-          <button onclick="submitFeedBack()">More Info</button>
+          <div class="feedback-container">
+            <input type="text" id="feedback" placeholder="Write your comment here" />
+          </div>
+          <div class="button-container">
+            <button onclick="submitFeedBack()">MORE INFO</button>
+          </div>
         </div>
-        <!--
+
         <script>
           function submitFeedBack() {
             let feedback = document.getElementById("feedback").value;
@@ -45,7 +49,6 @@
             }
           }
         </script>
--->
       </section>
     </main>
   </body>
