@@ -8,11 +8,11 @@ body {
 header {
   text-align: left;
 }
-header img {
+/* header img {
   width: 200px;
   height: auto;
   margin-bottom: 6rem;
-}
+} */
 
 .boldWords {
   font-weight: bold;
