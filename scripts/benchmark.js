@@ -18,7 +18,20 @@ window.onload = function () {
         btn2.innerText = data.results[qstNumber].incorrect_answers[1];
         btn3.innerText = data.results[qstNumber].incorrect_answers[2];
         btn4.innerText = data.results[qstNumber].correct_answer;
+
         btn1.addEventListener("click", function () {
+          qstNumber++;
+          loadQuestion();
+        });
+        btn2.addEventListener("click", function () {
+          qstNumber++;
+          loadQuestion();
+        });
+        btn3.addEventListener("click", function () {
+          qstNumber++;
+          loadQuestion();
+        });
+        btn4.addEventListener("click", function () {
           qstNumber++;
           loadQuestion();
         });
