@@ -1,0 +1,52 @@
+body {
+  margin-inline: 5rem;
+  margin-block: 5rem;
+  text-align: left;
+  font-size: 25px;
+}
+
+header {
+  text-align: left;
+}
+header img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 6rem;
+}
+
+.boldWords {
+  font-weight: bold;
+}
+
+h1 {
+  width: 500px;
+  font-weight: 400;
+  font-size: 5rem;
+  line-height: 4rem;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #c2128d;
+  margin: 0;
+}
+li {
+  padding-bottom: 0.3rem;
+}
+ul {
+  padding: 2rem;
+}
+button {
+  width: 200px;
+  height: 50px;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #00ffff;
+  border: 1px solid #00ffff;
+  box-shadow: 0px 0px 18px#00ffff;
+  margin-left: 10rem;
+}
