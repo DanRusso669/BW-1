@@ -32,21 +32,25 @@ window.onload = function () {
     //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone e
     let currentQuestion = allQuestions[qstNumber];
     let answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
-    console.log("ciao tutti io sono answer: ", answers);
+    console.log("DOmande non mischiate: ", answers);
+    let mixedAnswer = shuffleArray(answers);
+    console.log("domande mischiate ", mixedAnswer);
 
     h1.innerText = allQuestions[qstNumber].question;
-    btn1.innerText = answers[0];
-    btn2.innerText = answers[1];
-    btn3.innerText = answers[2];
-    btn4.innerText = answers[3];
+    btn1.innerText = mixedAnswer[0];
+    btn2.innerText = mixedAnswer[1];
+    btn3.innerText = mixedAnswer[2];
+    btn4.innerText = mixedAnswer[3];
 
     h1.innerText = currentQuestion.question;
 
-    shuffleArray(answers);
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // Scambia gli elementi
+        // Scambia gli elementi
+        const j = Math.round(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+        return array;
+        console.log("ciao sono arrei nel shuffle ", array);
       }
 
       h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
