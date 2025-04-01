@@ -8,40 +8,48 @@ window.onload = function () {
   const btn4 = document.getElementById("button4");
 
   let qstNumber = 0;
+  let allQuestions = [];
 
+  fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy")
+    .then((response) => response.json())
+    .then((data) => {
+      allQuestions = data.results;
+
+      console.log("domande raccolte: ", allQuestions);
+      loadQuestion();
+      consoleQuestion();
+    })
+    .catch((error) => console.error("Errore nel caricamento del file json:", error));
+  function consoleQuestion() {
+    for (let i = 0; i <= allQuestions.length; i++) {
+      console.log(allQuestions[i].question);
+    }
+  }
   function loadQuestion() {
-    fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy")
-      .then((response) => response.json())
-      .then((data) => {
-        h1.innerText = data.results[qstNumber].question;
-        btn1.innerText = data.results[qstNumber].incorrect_answers[0];
-        btn2.innerText = data.results[qstNumber].incorrect_answers[1];
-        btn3.innerText = data.results[qstNumber].incorrect_answers[2];
-        btn4.innerText = data.results[qstNumber].correct_answer;
-        for (let i = 0; i <= data.results.length; i++) {
-          console.log(data.results[i].question);
-        }
-
-        btn1.addEventListener("click", function () {
-          qstNumber++;
-          loadQuestion();
-        });
-        btn2.addEventListener("click", function () {
-          qstNumber++;
-          loadQuestion();
-        });
-        btn3.addEventListener("click", function () {
-          qstNumber++;
-          loadQuestion();
-        });
-        btn4.addEventListener("click", function () {
-          qstNumber++;
-          loadQuestion();
-        });
-      })
-      .catch((error) => console.error("Errore nel caricamento del file json:", error));
+    h1.innerText = allQuestions[qstNumber].question;
+    btn1.innerText = allQuestions[qstNumber].incorrect_answers[0];
+    btn2.innerText = allQuestions[qstNumber].incorrect_answers[1];
+    btn3.innerText = allQuestions[qstNumber].incorrect_answers[2];
+    btn4.innerText = allQuestions[qstNumber].correct_answer;
 
     h4.innerText = `QUESTION ${qstNumber + 1}`;
   }
-  loadQuestion();
+
+  btn1.addEventListener("click", function () {
+    console.log("ho premuto");
+    qstNumber++;
+    loadQuestion();
+  });
+  btn2.addEventListener("click", function () {
+    qstNumber++;
+    loadQuestion();
+  });
+  btn3.addEventListener("click", function () {
+    qstNumber++;
+    loadQuestion();
+  });
+  btn4.addEventListener("click", function () {
+    qstNumber++;
+    loadQuestion();
+  });
 };
