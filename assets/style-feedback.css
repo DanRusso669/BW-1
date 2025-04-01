@@ -8,7 +8,7 @@ header {
 }
 main {
   text-align: center;
-  margin-inline: 5.5rem;
+  margin-inline: 10rem;
 }
 .boldWords {
   font-weight: bold;
@@ -25,8 +25,8 @@ body p {
 .feedback-container {
   border-bottom: 3px solid rgb(194, 18, 141);
   text-align: left;
-  margin-inline: 6.3rem;
-  padding-top: 2rem;
+  margin: auto;
+  max-width: 50rem;
 }
 #feedback {
   background-color: transparent;
@@ -35,7 +35,6 @@ body p {
   margin-bottom: 10px;
   padding-left: 20px;
   font-size: 1.3rem;
-  width: 100%;
   color: white;
   outline: none;
 }
@@ -56,4 +55,40 @@ button {
   border: 1px solid #00ffff;
   box-shadow: 0px 0px 30px#00ffff;
   cursor: pointer;
+}
+
+#star-container {
+  display: inline-block;
+  white-space: nowrap;
+  margin-bottom: 4rem;
+}
+
+.star {
+  display: inline-block;
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  padding-inline: 5px;
+  fill: #0b113b;
+}
+
+.bo {
+  stroke: rgb(194, 18, 141);
+  stroke-width: 2%;
+  stroke-opacity: 0.2;
+}
+
+.accesa {
+  fill: #00ffff;
+}
+
+.spenta {
+  fill: #0b113b;
+}
+
+.classnewdiv {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-inline: 5rem;
+  text-align: center;
 }
