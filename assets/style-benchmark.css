@@ -36,3 +36,120 @@ footer img {
   margin-inline: 5rem;
   margin-block: 5rem;
 }
+header {
+  display: inline-block;
+}
+.main-container {
+  /* width: 100%;
+  height: 100vh; */
+  background-color: white;
+  /* padding-left: 6rem;
+  padding-top: 20rem; */
+}
+
+/* progress indicator */
+
+.circle-container {
+  width: 120px;
+  height: 120px;
+  background-color: #ddd;
+  border-radius: 50%;
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.semicircle {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: right center;
+}
+
+.semicircle:nth-child(1) {
+  background-color: #00ffff;
+  z-index: 2;
+}
+.semicircle:nth-child(2) {
+  background-color: #00ffff;
+  z-index: 3;
+}
+.semicircle:nth-child(3) {
+  background-color: #ddd;
+  z-index: 4;
+  /* display: none; */
+}
+.outermost-circle {
+  width: 95px;
+  height: 95px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 5;
+  margin-top: 12px;
+  margin-left: 13px;
+  /* display: none; */
+}
+
+/* hover */
+/* .main-container:hover .semicircle:nth-child(1) {
+  transform: rotate(180deg);
+  transition: 1s linear;
+}
+.main-container:hover .semicircle:nth-child(2) {
+  transform: rotate(360deg);
+  transition: 2s linear;
+}
+.main-container:hover .semicircle:nth-child(3) {
+  opacity: 0;
+  transition: opacity 0s 1s;
+} */
+
+/* timer */
+
+.timer-container {
+  width: 330px;
+  height: 200px;
+  position: absolute;
+  z-index: 6;
+  padding-left: 2.2rem;
+  padding-top: 1.5rem;
+  /* text-align: center; */
+}
+.timer {
+  width: 250px;
+  height: 100px;
+  position: absolute;
+  z-index: 7;
+}
+
+.timer div {
+  font-size: 45px;
+  font-weight: 100;
+  width: 40px;
+  height: 80px;
+  /* display: inline-block; */
+  padding-top: 5px;
+}
+#remain {
+  position: absolute;
+  z-index: 7;
+  font-size: 10px;
+  font-weight: bold;
+  color: crimson;
+  /* padding-left: 2rem; */
+  padding-right: 1px;
+  padding-top: 3.5rem;
+}
+
+#seconds {
+  position: absolute;
+  z-index: 7;
+  font-size: 10px;
+  font-weight: bold;
+  color: crimson;
+  padding-left: 3px;
+  /* padding-top: 1rem; */
+}

@@ -9,8 +9,25 @@
     <script src="scripts/benchmark.js" defer></script>
   </head>
   <body>
-    <header><img src="./assets/epicode_logo.png" alt="logo" id="logo" /></header>
-    <div class="timer"></div>
+    <header>
+      <img src="./assets/epicode_logo.png" alt="logo" id="logo" />
+      <div class="main-container">
+        <!-- progress indicator -->
+        <div class="circle-container">
+          <div class="semicircle"></div>
+          <div class="semicircle"></div>
+          <div class="semicircle"></div>
+          <div class="outermost-circle"></div>
+        </div>
+
+        <!-- timer -->
+        <div class="timer-container">
+          <p id="seconds">SECONDS</p>
+          <div class="timer"></div>
+          <p id="remain">REMAINING</p>
+        </div>
+      </div>
+    </header>
     <main>
       <!-- <h2>How can I create a <span>checkbox in HTML?</span></h2> -->
       <h1>How can I create a <span>checkbox in HTML?</span></h1>
