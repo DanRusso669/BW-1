@@ -1,6 +1,6 @@
 window.onload = function () {
-  const h2 = document.querySelector("h2");
-  const h6 = document.querySelector("h6");
+  const h1 = document.querySelector("h1");
+  const h4 = document.querySelector("h4");
   const div = document.getElementById("btnArea");
   const btn1 = document.getElementById("button1");
   const btn2 = document.getElementById("button2");
@@ -8,17 +8,18 @@ window.onload = function () {
   const btn4 = document.getElementById("button4");
 
   let qstNumber = 0;
+
   function loadQuestion() {
     fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy")
       .then((response) => response.json())
       .then((data) => {
         const question = data.results[qstNumber].question;
-        h2.innerText = question;
+        h1.innerText = question;
         btn1.innerText = data.results[qstNumber].incorrect_answers[0];
         btn2.innerText = data.results[qstNumber].incorrect_answers[1];
         btn3.innerText = data.results[qstNumber].incorrect_answers[2];
         btn4.innerText = data.results[qstNumber].correct_answer;
-
+        //importante: siccome le domande vengono caricare da un server, non bisogna caricarle molto velocemente o si  impalla
         btn1.addEventListener("click", function () {
           qstNumber++;
           loadQuestion();
@@ -37,7 +38,7 @@ window.onload = function () {
         });
       })
       .catch((error) => console.error("Errore nel caricamento:", error));
-    h6.innerText = `QUESTION ${qstNumber + 1}`;
+    h4.innerText = `QUESTION ${qstNumber + 1}`;
   }
   loadQuestion();
 };
