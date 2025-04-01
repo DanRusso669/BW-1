@@ -27,18 +27,20 @@ window.onload = function () {
       console.log("tipo:", allQuestions[i].type, "\n", allQuestions[i].question);
     }
   }
+
   function loadQuestion() {
     //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone e
+    let currentQuestion = allQuestions[qstNumber];
+    let answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
+    console.log("ciao tutti io sono answer: ", answers);
+
     h1.innerText = allQuestions[qstNumber].question;
     btn1.innerText = answers[0];
     btn2.innerText = answers[1];
     btn3.innerText = answers[2];
     btn4.innerText = answers[3];
 
-    const currentQuestion = allQuestions[qstNumber];
     h1.innerText = currentQuestion.question;
-
-    const answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
 
     shuffleArray(answers);
     function shuffleArray(array) {
