@@ -39,9 +39,10 @@ window.onload = function () {
       //se boolean (non multiple),gli ultimi due bottoni scompaiono, così de botto.
       btn3.style.display = "none";
       btn4.style.display = "none";
-    }
+    } //TO DO: fa riapparire i bottoni quando si torna in multiple
 
     h4.innerText = `QUESTION ${qstNumber + 1}`; //questo piccolino ci dice a quale domanda siamo
+    //TO DO: aggiungere il test /10 come nel modello
   }
   //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
   //TO DO: collezionare il numero di risposte giuste in un array.
