@@ -13,13 +13,15 @@ window.onload = function () {
     fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy")
       .then((response) => response.json())
       .then((data) => {
-        const question = data.results[qstNumber].question;
-        h1.innerText = question;
+        h1.innerText = data.results[qstNumber].question;
         btn1.innerText = data.results[qstNumber].incorrect_answers[0];
         btn2.innerText = data.results[qstNumber].incorrect_answers[1];
         btn3.innerText = data.results[qstNumber].incorrect_answers[2];
         btn4.innerText = data.results[qstNumber].correct_answer;
-        //importante: siccome le domande vengono caricare da un server, non bisogna caricarle molto velocemente o si  impalla
+        for (let i = 0; i <= data.results.length; i++) {
+          console.log(data.results[i].question);
+        }
+
         btn1.addEventListener("click", function () {
           qstNumber++;
           loadQuestion();
@@ -37,7 +39,8 @@ window.onload = function () {
           loadQuestion();
         });
       })
-      .catch((error) => console.error("Errore nel caricamento:", error));
+      .catch((error) => console.error("Errore nel caricamento del file json:", error));
+
     h4.innerText = `QUESTION ${qstNumber + 1}`;
   }
   loadQuestion();
