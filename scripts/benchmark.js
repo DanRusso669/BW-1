@@ -27,40 +27,52 @@ window.onload = function () {
       console.log("tipo:", allQuestions[i].type, "\n", allQuestions[i].question);
     }
   }
+
   function loadQuestion() {
     //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone e
-    h1.innerText = allQuestions[qstNumber].question;
-    btn1.innerText = allQuestions[qstNumber].correct_answer;
-    btn2.innerText = allQuestions[qstNumber].incorrect_answers[0];
-    if (allQuestions[qstNumber].type === "multiple") {
-      btn3.innerText = allQuestions[qstNumber].incorrect_answers[1];
-      btn4.innerText = allQuestions[qstNumber].incorrect_answers[2]; //TO DO: fare effetto random.
-    } else {
-      //se boolean (non multiple),gli ultimi due bottoni scompaiono, così de botto.
-      btn3.style.display = "none";
-      btn4.style.display = "none";
-    } //TO DO: fa riapparire i bottoni quando si torna in multiple
+    let currentQuestion = allQuestions[qstNumber];
+    let answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
+    console.log("DOmande non mischiate: ", answers);
+    let mixedAnswer = shuffleArray(answers);
+    console.log("domande mischiate ", mixedAnswer);
 
-    h4.innerText = `QUESTION ${qstNumber + 1}`; //questo piccolino ci dice a quale domanda siamo
-    //TO DO: aggiungere il test /10 come nel modello
+    h1.innerText = allQuestions[qstNumber].question;
+    btn1.innerText = mixedAnswer[0];
+    btn2.innerText = mixedAnswer[1];
+    btn3.innerText = mixedAnswer[2];
+    btn4.innerText = mixedAnswer[3];
+
+    h1.innerText = currentQuestion.question;
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        // Scambia gli elementi
+        const j = Math.round(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+        return array;
+        console.log("ciao sono arrei nel shuffle ", array);
+      }
+
+      h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
+    }
+    //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
+    //TO DO: collezionare il numero di risposte giuste in un array.
+    btn1.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
+    btn2.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
+    btn3.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
+    btn4.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
   }
-  //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
-  //TO DO: collezionare il numero di risposte giuste in un array.
-  btn1.addEventListener("click", function () {
-    qstNumber++;
-    loadQuestion();
-  });
-  btn2.addEventListener("click", function () {
-    qstNumber++;
-    loadQuestion();
-  });
-  btn3.addEventListener("click", function () {
-    qstNumber++;
-    loadQuestion();
-  });
-  btn4.addEventListener("click", function () {
-    qstNumber++;
-    loadQuestion();
-  });
 };
 //that's all folks
