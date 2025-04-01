@@ -22,15 +22,21 @@ window.onload = function () {
     .catch((error) => console.error("Errore nel caricamento del file json:", error));
   function consoleQuestion() {
     for (let i = 0; i <= allQuestions.length; i++) {
-      console.log(allQuestions[i].question);
+      console.log("tipo:", allQuestions[i].type, "\n", allQuestions[i].question);
     }
   }
   function loadQuestion() {
     h1.innerText = allQuestions[qstNumber].question;
-    btn1.innerText = allQuestions[qstNumber].incorrect_answers[0];
-    btn2.innerText = allQuestions[qstNumber].incorrect_answers[1];
-    btn3.innerText = allQuestions[qstNumber].incorrect_answers[2];
-    btn4.innerText = allQuestions[qstNumber].correct_answer;
+
+    btn1.innerText = allQuestions[qstNumber].correct_answer;
+    btn2.innerText = allQuestions[qstNumber].incorrect_answers[0];
+    if (allQuestions[qstNumber].type === "multiple") {
+      btn3.innerText = allQuestions[qstNumber].incorrect_answers[1];
+      btn4.innerText = allQuestions[qstNumber].incorrect_answers[2]; //TO DO: fare effetto random.
+    } else {
+      btn3.style.display = "none";
+      btn4.style.display = "none";
+    }
 
     h4.innerText = `QUESTION ${qstNumber + 1}`;
   }
