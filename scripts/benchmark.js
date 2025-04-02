@@ -3,13 +3,11 @@ window.onload = function () {
   //qui mi prelevo con il dom, tutti gli elementi che mi servono per poterli modificare
   const h1 = document.querySelector("h1");
   const h4 = document.querySelector("h4");
-  const btn1 = document.getElementById("button1");
-  const btn2 = document.getElementById("button2");
-  const btn3 = document.getElementById("button3");
-  const btn4 = document.getElementById("button4");
 
   let qstNumber = 0; //mi serve per avanzare correttamente nell'array
   let allQuestions = []; //array di oggetti in cui metterò le domande
+  const btnArea = document.getElementById("btnArea");
+  let risposteCorrette = [];
 
   fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande del server
     .then((response) => response.json()) //converto le info json trovate nel link in formato js
@@ -23,7 +21,7 @@ window.onload = function () {
     .catch((error) => console.error("Errore nel caricamento del file json:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
   function consoleQuestion() {
     //come detto prima questa funzione è utile solo per noi, per capire quali domande usciranno
-    for (let i = 0; i <= allQuestions.length; i++) {
+    for (let i = 0; i < allQuestions.length; i++) {
       console.log("tipo:", allQuestions[i].type, "\n", allQuestions[i].question);
     }
   }
@@ -37,42 +35,46 @@ window.onload = function () {
     console.log("domande mischiate ", mixedAnswer);
 
     h1.innerText = allQuestions[qstNumber].question;
-    btn1.innerText = mixedAnswer[0];
-    btn2.innerText = mixedAnswer[1];
-    btn3.innerText = mixedAnswer[2];
-    btn4.innerText = mixedAnswer[3];
+    //btn1.innerText = mixedAnswer[0];
+    //btn2.innerText = mixedAnswer[1];
+    //btn3.innerText = mixedAnswer[2];
+    //btn4.innerText = mixedAnswer[3];
 
     h1.innerText = currentQuestion.question;
+    h4.innerText = `QUESTION ${qstNumber + 1} /10`;
+    btnArea.innerHTML = "";
 
-    function shuffleArray(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        // Scambia gli elementi
-        const j = Math.round(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-        return array;
-        console.log("ciao sono arrei nel shuffle ", array);
-      }
-
+    for (let i = 0; i < mixedAnswer.length; i++) {
+      const bottone = document.createElement("button");
+      bottone.innerText = mixedAnswer[i];
+      bottone.addEventListener("click", function () {
+        const rispostaUtente = bottone.innerText;
+        checkAnswer(rispostaUtente, currentQuestion.correct_answer);
+        qstNumber++;
+        if (qstNumber < allQuestions.length) {
+          loadQuestion();
+        }
+      });
+      btnArea.appendChild(bottone);
     }
-    h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
-    //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
-    //TO DO: collezionare il numero di risposte giuste in un array.
-    btn1.addEventListener("click", function () {
-      qstNumber++;
-      loadQuestion();
-    });
-    btn2.addEventListener("click", function () {
-      qstNumber++;
-      loadQuestion();
-    });
-    btn3.addEventListener("click", function () {
-      qstNumber++;
-      loadQuestion();
-    });
-    btn4.addEventListener("click", function () {
-      qstNumber++;
-      loadQuestion();
-    });
   }
+  function checkAnswer(x, y) {
+    if (x === y) {
+      risposteCorrette++;
+    }
+  }
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      // Scambia gli elementi
+      const j = Math.round(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+
+      console.log("ciao sono arrei nel shuffle ", array);
+    }
+    return array;
+  }
+  //h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
+  //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
+  //TO DO: collezionare il numero di risposte giuste in un array.
 };
 //that's all folks
