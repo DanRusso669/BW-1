@@ -42,7 +42,7 @@ body p {
   margin-top: 1rem;
   text-align: center;
   display: block;
-  padding-top: 3rem;
+  padding-top: 1rem;
 }
 button {
   width: 240px;
@@ -60,7 +60,7 @@ button {
 #star-container {
   display: inline-block;
   white-space: nowrap;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .star {
@@ -94,13 +94,13 @@ button {
 }
 #starReview {
   display: none;
-  margin-block: 1rem;
+  margin-bottom: 1rem;
   font-weight: bold;
   color: rgb(194, 18, 141);
 }
 #noFeedBack {
   display: none;
-  margin-block: 1rem;
+  margin-top: 2rem;
   font-weight: bold;
   color: rgb(194, 18, 141);
 }
