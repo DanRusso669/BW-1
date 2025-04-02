@@ -51,5 +51,5 @@ svg {
   }
 }
 #progressBar {
-  animation: 10s circletimer linear;
+  animation: 30s circletimer linear;
 }

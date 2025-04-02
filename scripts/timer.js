@@ -1,4 +1,4 @@
-const sec = 11;
+const sec = 30;
 
 const setTime = sec * 1000; // trasforma i secondi in millisec
 const startTime = Date.now(); // prende i millesec dal 01/01/70
