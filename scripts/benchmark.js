@@ -53,8 +53,8 @@ window.onload = function () {
         console.log("ciao sono arrei nel shuffle ", array);
       }
 
-      h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
     }
+    h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
     //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
     //TO DO: collezionare il numero di risposte giuste in un array.
     btn1.addEventListener("click", function () {
