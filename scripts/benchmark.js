@@ -32,7 +32,7 @@ window.onload = function () {
     //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone e
     let currentQuestion = allQuestions[qstNumber];
     let answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
-    console.log("DOmande non mischiate: ", answers);
+    console.log("Domande non mischiate: ", answers);
     let mixedAnswer = shuffleArray(answers);
     console.log("domande mischiate ", mixedAnswer);
 
