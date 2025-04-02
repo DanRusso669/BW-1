@@ -41,8 +41,42 @@ window.onload = function () {
       btn4.style.display = "none";
     } //TO DO: fa riapparire i bottoni quando si torna in multiple
 
+<<<<<<< Updated upstream
     h4.innerText = `QUESTION ${qstNumber + 1}`; //questo piccolino ci dice a quale domanda siamo
     //TO DO: aggiungere il test /10 come nel modello
+=======
+    h1.innerText = currentQuestion.question;
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        // Scambia gli elementi
+        const j = Math.round(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+        return array;
+        console.log("ciao sono arrei nel shuffle ", array);
+      }
+
+    }
+    h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
+    //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
+    //TO DO: collezionare il numero di risposte giuste in un array.
+    btn1.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
+    btn2.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
+    btn3.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
+    btn4.addEventListener("click", function () {
+      qstNumber++;
+      loadQuestion();
+    });
+>>>>>>> Stashed changes
   }
   //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
   //TO DO: collezionare il numero di risposte giuste in un array.
