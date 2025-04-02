@@ -53,3 +53,10 @@ svg {
 #progressBar {
   animation: 30s circletimer linear;
 }
+ header {
+  position: relative;
+  height: 200px;
+ }
+ #timer {
+  position : absolute;
+ }
