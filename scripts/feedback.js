@@ -26,13 +26,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function submitFeedBack() {
   let feedback = document.getElementById("feedback").value.trim();
+  let divReview = document.getElementById("starReview");
+  let divFeedBack = document.getElementById("noFeedBack");
+
+  if (nStelle === 0 && feedback === "") {
+    divFeedBack.style.display = "block";
+    divReview.style.display = "block";
+  }
+
+  if (feedback !== "") {
+    divFeedBack.style.display = "none";
+  }
+
+  if (nStelle === 0) {
+    divReview.style.display = "block";
+    return;
+  } else {
+    divReview.style.display = "none";
+  }
 
   if (feedback === "") {
-    alert("Per favore, scrivi un feedback.");
+    divFeedBack.style.display = "block";
     return;
-  } else if (nStelle === 0) {
-    alert("Per favore, lasciaci un voto.");
-    return;
+  } else {
+    divFeedBack.style.display = "none";
   }
 
   let main = document.getElementById("mainContent");
@@ -43,9 +60,9 @@ function submitFeedBack() {
   let newP = document.createElement("p");
 
   if (nStelle < 6) {
-    newP.textContent = "Grazie per il tuo feedback, hai lasciato una recensione insufficiente 😢.";
+    newP.textContent = "Thanks for your feedback, you left a negative review 😢.";
   } else {
-    newP.textContent = "Grazie per il tuo feedback, hai lasciato una recensione sufficiente 😊.";
+    newP.textContent = "Thanks for your feedback, you left a positive review 😊.";
   }
 
   newDiv.appendChild(newP);

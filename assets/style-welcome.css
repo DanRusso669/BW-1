@@ -51,3 +51,13 @@ button {
   margin-left: 10rem;
   cursor: pointer;
 }
+
+#condition {
+  display: none;
+  margin-top: 1rem;
+  color: #c2128d;
+  font-weight: bold;
+}
+#checkbox {
+  cursor: pointer;
+}

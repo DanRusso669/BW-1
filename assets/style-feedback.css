@@ -74,8 +74,8 @@ button {
 
 .bo {
   stroke: rgb(194, 18, 141);
-  stroke-width: 2%;
-  stroke-opacity: 0.2;
+  stroke-width: 5%;
+  stroke-opacity: 0.3;
 }
 
 .accesa {
@@ -91,4 +91,16 @@ button {
   font-weight: 300;
   margin-inline: 5rem;
   text-align: center;
+}
+#starReview {
+  display: none;
+  margin-block: 1rem;
+  font-weight: bold;
+  color: rgb(194, 18, 141);
+}
+#noFeedBack {
+  display: none;
+  margin-block: 1rem;
+  font-weight: bold;
+  color: rgb(194, 18, 141);
 }
