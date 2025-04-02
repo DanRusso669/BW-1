@@ -36,3 +36,20 @@ footer img {
   margin-inline: 5rem;
   margin-block: 5rem;
 }
+
+/* STILE DEL TIMER */
+svg {
+  display: inline-block;
+}
+
+@keyframes circletimer {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 565.2;
+  }
+}
+#progressBar {
+  animation: 30s circletimer linear;
+}
