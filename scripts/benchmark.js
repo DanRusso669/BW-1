@@ -4,6 +4,7 @@ window.onload = function () {
   const h1 = document.querySelector("h1");
   const h4 = document.querySelector("h4");
   const btnArea = document.getElementById("btnArea");
+  
 
   let qstNumber = 0; //mi serve per avanzare correttamente nell'array
   let allQuestions = []; //array di oggetti in cui metterò le domande
@@ -21,7 +22,7 @@ window.onload = function () {
       loadQuestion(); //carico la funzione primaria di gererazione domande 
       consoleQuestion(); //carica la funzione del console log, utile per verificare quali domande compariranno.
     })
-    .catch((error) => console.error("Errore nel caricamento del file json:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
+    .catch((error) => console.error("Errore nel caricamento del file:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
   
     
     function consoleQuestion() {  //come detto prima questa funzione è utile solo per noi, per capire quali domande usciranno
@@ -33,40 +34,52 @@ window.onload = function () {
   function loadQuestion() { //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone 
     
     currentQuestion = allQuestions[qstNumber]; //prendo la domanda corrente
-    answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]; //prendo tutte le risposte
-    console.log("Domande non mischiate: ", answers);
-     mixedAnswer = shuffleArray(answers);
-    console.log("domande mischiate ", mixedAnswer);
-
-    h1.innerText = allQuestions[qstNumber].question;
-  
     h1.innerText = currentQuestion.question;
+
+
+    answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]; //prendo tutte le risposte
+    if (currentQuestion.type !=="boolean"){ 
+     mixedAnswer = shuffleArray(answers);
+    }else{
+      mixedAnswer =answers;
+    }
+  
     h4.innerText = `QUESTION ${qstNumber + 1} /10`;
     btnArea.innerHTML = "";
 
     for (let i = 0; i < mixedAnswer.length; i++) {// i bottoni vengono creati sulla base delle risposte mischiate
-      const bottone = document.createElement("button");
-      bottone.innerText = mixedAnswer[i];
+      
+      let button = document.createElement("button");
+      button.innerText = mixedAnswer[i];
+     
+    
 
-      bottone.addEventListener("click", function () {
-        const rispostaUtente = bottone.innerText;
-        answerVerify(rispostaUtente, currentQuestion.correct_answer);
+    
+      button.addEventListener("click", function () { //TO DO viene causato un errore perchè l'evento è fuori dal for che lo crea
+        let userResponse = button.innerText;
+        answerVerify(userResponse, currentQuestion.correct_answer);
         qstNumber++;
         if (qstNumber < allQuestions.length) {
           loadQuestion();
         } else {
-          risultati();
+          theEnd();
         }
-      });
-      btnArea.appendChild(bottone);
-    }
+       }); 
+       btnArea.appendChild(button);
+      }
+      
+      
+      
+      // btnArea.appendChild(buttonTrue);
+      // btnArea.appendChild(buttonFalse);
   }
-  function answerVerify(x, y) {  //controlla se le risposta è corretta
-    if (x === y) {
+  
+  function answerVerify(user, right) {  //controlla se le risposta è corretta
+    if (user === right) {
       correctAnswers++;
     }
   }
-  function risultati() {
+  function theEnd() {
     window.location.href = "./resultspages.html";
   }
   function shuffleArray(array) {   //  Fisher-Yates Shuffle: mescola gli array
