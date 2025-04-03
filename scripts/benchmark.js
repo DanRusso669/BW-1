@@ -11,7 +11,7 @@ window.onload = function () {
   let currentQuestion; // prende la domanda corrente
   let answers= []; //prende le risposte così come sono fornite dall'api
   let mixedAnswer = []; //risposte con posizione randomizzata
-  let correctAnswers; //contatore di risposte corrette
+  let correctAnswers =0; //contatore di risposte corrette
 
   fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande genrate dal server tramite API
     .then((response) => response.json()) //converto le info json trovate nel link in formato js
@@ -27,7 +27,7 @@ window.onload = function () {
     
     function consoleQuestion() {  //ci fa capire quali domande usciranno
     for (let i = 0; i < allQuestions.length; i++) {
-      console.log("tipo:", allQuestions[i].type, allQuestions[i].correct_answer, "\n", allQuestions[i].question);
+      console.log(`tipo: ${allQuestions[i].type},  corretta: ${allQuestions[i].correct_answer} \n ${allQuestions[i].question}`);
     }
   }
 
@@ -40,13 +40,13 @@ window.onload = function () {
     answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]; //prendo tutte le risposte
     if (currentQuestion.type !=="boolean"){ 
      mixedAnswer = shuffleArray(answers);
-    }else if (currentQuestion.correct_answer=== "False"){
-mixedAnswer[0] =answers[1];
-mixedAnswer[1] =answers[0];
+    }else if (currentQuestion.correct_answer=== "False"){ //se la risposta "false" è quella vera, in automatico la metterebbe per primoe e in questo modo glielo impediamo spostandola come seconda posizione
+        mixedAnswer[0] =answers[1];
+        mixedAnswer[1] =answers[0];
 
       
-    }else {
-      mixedAnswer= answers;
+    }else {//se è boolean e la risposta giusta è "true"; allora non fare alcun cambiamento sulla posizione
+      mixedAnswer= answers; 
     }
   
     h4.innerText = `QUESTION ${qstNumber + 1} /10`;
@@ -62,7 +62,9 @@ mixedAnswer[1] =answers[0];
     
       button.addEventListener("click", function () { 
         let userResponse = button.innerText;
+        console.log (`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
         answerVerify(userResponse, currentQuestion.correct_answer);
+        console.log (correctAnswers);
         qstNumber++;
         if (qstNumber < allQuestions.length) {
           loadQuestion();
@@ -79,10 +81,10 @@ mixedAnswer[1] =answers[0];
       // btnArea.appendChild(buttonFalse);
   }
   
-  function answerVerify(user, right) {  //controlla se le risposta è corretta
-    if (user === right) {
+  function answerVerify(user, correct) {  //controlla se le risposta è corretta
+    if (user === correct) {
       correctAnswers++;
-      console.log (correctAnswers)
+   
     }
   }
   function theEnd() {
