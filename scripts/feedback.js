@@ -60,9 +60,11 @@ function submitFeedBack() {
   let newP = document.createElement("p");
 
   if (nStelle < 6) {
-    newP.textContent = "Thanks for your feedback, you left a negative review 😢.";
+    newP.innerText = "Thanks for your feedback, you left a negative review 😢.";
+  } else if (nStelle < 9) {
+    newP.innerText = "Thanks for your feedback, you left a positive review 😊.";
   } else {
-    newP.textContent = "Thanks for your feedback, you left a positive review 😊.";
+    newP.innerText = "Thanks for your feedback, you left a very positive review 🤩.";
   }
 
   newDiv.appendChild(newP);

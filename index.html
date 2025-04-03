@@ -26,17 +26,22 @@
       <div>
         <ul>
           <li>Each question is <span class="boldWords">timed</span> and can only be <span class="boldWords">answered once</span>.</li>
-          <li>Changing browser tab or opening other windows will <span class="boldWords"> invalidate the question</span>.</li>
-          <li>This exam will take approx. <span class="boldWords"> 0-5 minutes</span>.</li>
+          <li>Changing browser tab or opening other windows will <span class="boldWords">invalidate the question</span>.</li>
+          <li>This exam will take approx. <span class="boldWords">0-5 minutes</span>.</li>
         </ul>
       </div>
     </main>
     <footer>
       <form id="form">
-        <input type="checkbox" id="checkbox" /> I promise to answer myself without help from anyone
+        <label class="custom-checkbox">
+          <input type="checkbox" id="checkbox" />
+          <span class="checkmark"></span>
+          I promise to answer myself without help from anyone
+        </label>
         <button type="submit" id="button">PROCEED</button>
       </form>
-      <h4 id="condition">⬆️You must accept the terms and conditions!</h4>
+
+      <h4 id="condition">You must accept the terms and conditions!</h4>
     </footer>
     <script src="./scripts/index.js"></script>
   </body>
