@@ -1,0 +1,25 @@
+body {
+  margin-inline: 5rem;
+  margin-block: 5rem;
+  text-align: left;
+  font-size: 25px;
+}
+h1 {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 0;
+}
+header {
+  height: 100px;
+}
+#secondtitle {
+  text-align: center;
+}
+button {
+  background-color: transparent;
+  border: 3px solid white;
+  color: white;
+}
+footer {
+  text-align: center;
+}

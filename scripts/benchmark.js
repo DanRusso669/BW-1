@@ -49,19 +49,24 @@ window.onload = function () {
       bottone.innerText = mixedAnswer[i];
       bottone.addEventListener("click", function () {
         const rispostaUtente = bottone.innerText;
-        checkAnswer(rispostaUtente, currentQuestion.correct_answer);
+        verificaRisposta(rispostaUtente, currentQuestion.correct_answer);
         qstNumber++;
         if (qstNumber < allQuestions.length) {
           loadQuestion();
+        } else {
+          risultati();
         }
       });
       btnArea.appendChild(bottone);
     }
   }
-  function checkAnswer(x, y) {
+  function verificaRisposta(x, y) {
     if (x === y) {
       risposteCorrette++;
     }
+  }
+  function risultati() {
+    window.location.href = "./resultspages.html";
   }
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
