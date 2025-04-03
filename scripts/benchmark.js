@@ -72,8 +72,8 @@ window.onload = function () {
   function shuffleArray(array) {   //  Fisher-Yates Shuffle: mescola gli array
     for (let i = array.length - 1; i > 0; i--) {
       
-      const j = Math.round(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+      const j = Math.floor(Math.random() * (i + 1)); //serve a generare un valore casuale.
+      [array[i], array[j]] = [array[j], array[i]]; // destructuring assignnment: scambia i due elementi dell'array, ogni volta di un valore casuale (j)
      
     }
     return array;
