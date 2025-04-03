@@ -12,40 +12,42 @@
   <body>
     <header>
       <div id="logo">
-      <img src="./assets/epicode_logo.png" alt="logo" id="logo" /></div>
-      <div id="cerchio"><svg width="150" height="150" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(-90deg)">
-        <circle r="90" cx="100" cy="100" fill="transparent" stroke="white" stroke-opacity="10%" stroke-width="20"></circle>
-        <circle
-          id="progressBar"
-          r="90"
-          cx="100"
-          cy="100"
-          stroke="#00ffff"
-          stroke-width="20"
-          stroke-linecap="butt"
-          stroke-dashoffset="565.2px"
-          fill="transparent"
-          stroke-dasharray="565.2px"
-        ></circle>
-      </svg><div id="pCerchio">
-      <p id="firstP">SECONDS</p>
-      <p id="middleText">00</p>
-      <p>REMAINING</p></div>
+        <img src="./assets/epicode_logo.png" alt="logo" id="logo" />
       </div>
-    
+      <div id="cerchio">
+        <svg width="150" height="150" viewBox="-25 -25 250 250" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(-90deg)">
+          <circle r="90" cx="100" cy="100" fill="transparent" stroke="white" stroke-opacity="10%" stroke-width="20"></circle>
+          <circle
+            id="progressBar"
+            r="90"
+            cx="100"
+            cy="100"
+            stroke="#00ffff"
+            stroke-width="20"
+            stroke-linecap="butt"
+            stroke-dashoffset="565.2px"
+            fill="transparent"
+            stroke-dasharray="565.2px"
+          ></circle>
+        </svg>
+        <div id="pCerchio">
+          <p id="firstP">SECONDS</p>
+          <p id="middleText">00</p>
+          <p>REMAINING</p>
+        </div>
+      </div>
     </header>
-    
+
     <main>
-   <div id="benchmark">
-      <h1></span></h1>
-      <div id="btnArea">
-        <button type="button" id="button1"></button>
-        <button type="button" id="button2"></button>
-        <div><button type="button" id="button3"></button> 
-          <button type="button" id="button4"></button></div>
+      <div id="benchmark">
+        <h1 id="question"></h1>
+        <div id="btnArea">
+          <button type="button" id="button1"></button>
+          <button type="button" id="button2"></button>
+          <div><button type="button" id="button3"></button> <button type="button" id="button4"></button></div>
+        </div>
       </div>
-    </div>
     </main>
-    <footer><h4></h4></footer>
+    <footer><h4 id="numberOfQuestion"></h4></footer>
   </body>
 </html>
