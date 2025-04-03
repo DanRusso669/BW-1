@@ -3,53 +3,54 @@ window.onload = function () {
   //qui mi prelevo con il dom, tutti gli elementi che mi servono per poterli modificare
   const h1 = document.querySelector("h1");
   const h4 = document.querySelector("h4");
+  const btnArea = document.getElementById("btnArea");
 
   let qstNumber = 0; //mi serve per avanzare correttamente nell'array
   let allQuestions = []; //array di oggetti in cui metterò le domande
-  const btnArea = document.getElementById("btnArea");
-  let risposteCorrette = [];
+  let currentQuestion; // prende la domanda corrente
+  let answers= []; //prende le risposte così come sono fornite dall'api
+  let mixedAnswer = []; //risposte con posizione randomizzata
+  let correctAnswers; //contatore di risposte corrette
 
-  fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande del server
+  fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande genrate dal server tramite API
     .then((response) => response.json()) //converto le info json trovate nel link in formato js
     .then((data) => {
       allQuestions = data.results; //metto tutte le domande del file json, con tutte le info, nell'array di oggetti creato prima
 
       console.log("domande raccolte: ", allQuestions); //conferma
-      loadQuestion(); //carico la funzione primaria di gererazione domande (si trova sotto)
+      loadQuestion(); //carico la funzione primaria di gererazione domande 
       consoleQuestion(); //carica la funzione del console log, utile per verificare quali domande compariranno.
     })
     .catch((error) => console.error("Errore nel caricamento del file json:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
-  function consoleQuestion() {
-    //come detto prima questa funzione è utile solo per noi, per capire quali domande usciranno
+  
+    
+    function consoleQuestion() {  //come detto prima questa funzione è utile solo per noi, per capire quali domande usciranno
     for (let i = 0; i < allQuestions.length; i++) {
       console.log("tipo:", allQuestions[i].type, "\n", allQuestions[i].question);
     }
   }
 
-  function loadQuestion() {
-    //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone e
-    let currentQuestion = allQuestions[qstNumber];
-    let answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
+  function loadQuestion() { //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone 
+    
+    currentQuestion = allQuestions[qstNumber]; //prendo la domanda corrente
+    answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]; //prendo tutte le risposte
     console.log("Domande non mischiate: ", answers);
-    let mixedAnswer = shuffleArray(answers);
+     mixedAnswer = shuffleArray(answers);
     console.log("domande mischiate ", mixedAnswer);
 
     h1.innerText = allQuestions[qstNumber].question;
-    //btn1.innerText = mixedAnswer[0];
-    //btn2.innerText = mixedAnswer[1];
-    //btn3.innerText = mixedAnswer[2];
-    //btn4.innerText = mixedAnswer[3];
-
+  
     h1.innerText = currentQuestion.question;
     h4.innerText = `QUESTION ${qstNumber + 1} /10`;
     btnArea.innerHTML = "";
 
-    for (let i = 0; i < mixedAnswer.length; i++) {
+    for (let i = 0; i < mixedAnswer.length; i++) {// i bottoni vengono creati sulla base delle risposte mischiate
       const bottone = document.createElement("button");
       bottone.innerText = mixedAnswer[i];
+
       bottone.addEventListener("click", function () {
         const rispostaUtente = bottone.innerText;
-        verificaRisposta(rispostaUtente, currentQuestion.correct_answer);
+        answerVerify(rispostaUtente, currentQuestion.correct_answer);
         qstNumber++;
         if (qstNumber < allQuestions.length) {
           loadQuestion();
@@ -60,26 +61,24 @@ window.onload = function () {
       btnArea.appendChild(bottone);
     }
   }
-  function verificaRisposta(x, y) {
+  function answerVerify(x, y) {  //controlla se le risposta è corretta
     if (x === y) {
-      risposteCorrette++;
+      correctAnswers++;
     }
   }
   function risultati() {
     window.location.href = "./resultspages.html";
   }
-  function shuffleArray(array) {
+  function shuffleArray(array) {   //  Fisher-Yates Shuffle: mescola gli array
     for (let i = array.length - 1; i > 0; i--) {
-      // Scambia gli elementi
+      
       const j = Math.round(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
-
-      console.log("ciao sono arrei nel shuffle ", array);
+     
     }
     return array;
   }
-  //h4.innerText = `QUESTION ${qstNumber + 1} /10`; //questo piccolino ci dice a quale domanda siamo
-  //da qui partono gli event listener che si avviano al click e richiamano la funzione principale.
+  
   //TO DO: collezionare il numero di risposte giuste in un array.
 };
 //that's all folks
