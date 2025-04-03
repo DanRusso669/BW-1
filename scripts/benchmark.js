@@ -4,6 +4,7 @@ window.onload = function () {
   const h1 = document.querySelector("h1");
   const h4 = document.querySelector("h4");
   const btnArea = document.getElementById("btnArea");
+  const timerStart =new Event ("timerStart");
 
   let qstNumber = 0; //mi serve per avanzare correttamente nell'array
   let allQuestions = []; //array di oggetti in cui metterò le domande
@@ -29,6 +30,10 @@ window.onload = function () {
       console.log(`tipo: ${allQuestions[i].type},  corretta: ${allQuestions[i].correct_answer} \n ${allQuestions[i].question}`);
     }
   }
+  document.addEventListener ("timerDown", (e) =>{
+    console.log ("tempo scaduto")
+  loadQuestion();
+  });
 
   function loadQuestion() {
     //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone
@@ -49,7 +54,7 @@ window.onload = function () {
       //se è boolean e la risposta giusta è "true"; allora non fare alcun cambiamento sulla posizione
       mixedAnswer = answers;
     }
-
+document.dispatchEvent(timerStart);
     elenco.innerText = `QUESTION ${qstNumber + 1} /10`;
     btnArea.innerHTML = "";
 
@@ -61,7 +66,7 @@ window.onload = function () {
 
       button.addEventListener("click", function () {
         let userResponse = button.innerText;
-        console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
+        // console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
         answerVerify(userResponse, currentQuestion.correct_answer);
         console.log(correctAnswers);
         qstNumber++;
