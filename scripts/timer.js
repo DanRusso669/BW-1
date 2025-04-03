@@ -1,13 +1,17 @@
-const sec = 15;
+const sec = 10;
 // const sec = 30;
+let futureTime;
 
 const setTime = sec * 1000; // trasforma i secondi in millisec
-const startTime = Date.now(); // prende i millesec dal 01/01/70
-const futureTime = startTime + setTime; //somma i due valori sopra
 
 document.addEventListener ("timerStart", (e) =>{
   console.log ("tempo iniziato")
+  const startTime = Date.now(); // prende i millesec dal 01/01/70
+   futureTime = startTime + sec *1000; 
+ 
 countDownTimer();
+clearInterval(timerLoop); //interrompe eventuali timer precedenti
+timerLoop =setInterval(countDownTimer,1000);  //e adesso lo fa ripartire con un intervallo di un secondo
 });
 
 const countDownTimer = function () {
@@ -15,11 +19,12 @@ const countDownTimer = function () {
   const remainingTime = futureTime - currentTime; // calcola la differenza col tempo che passa
   const timerText = document.getElementById("middleText"); // selezioniamo la variabile del testo
   const timerDown = new Event("timerDown");
+
   if (remainingTime <= 0) {
     // se i tempo rimanente è uguale a 0
     clearInterval(timerLoop); // Ferma il timer
     
-    document.dispatchEvent(timerDown);
+    document.dispatchEvent( new Event ("timerDown")); //invia evento
 
     timerText.innerText = "00"; // Timer scaduto quindi rimettiamo 00 sul testo
   } else {
@@ -29,4 +34,4 @@ const countDownTimer = function () {
 };
 
 
-const timerLoop = setInterval(countDownTimer);
+let timerLoop = setInterval(countDownTimer, 1000);
