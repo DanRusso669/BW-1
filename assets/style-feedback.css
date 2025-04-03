@@ -37,6 +37,7 @@ body p {
   font-size: 1.3rem;
   color: white;
   outline: none;
+  width: 100%;
 }
 .button-container {
   margin-top: 1rem;
@@ -85,13 +86,6 @@ button {
 .spenta {
   fill: #0b113b;
 }
-
-.classnewdiv {
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin-inline: 5rem;
-  text-align: center;
-}
 #starReview {
   display: none;
   margin-bottom: 1rem;
@@ -103,4 +97,51 @@ button {
   margin-top: 2rem;
   font-weight: bold;
   color: rgb(194, 18, 141);
+}
+
+.classnewdiv {
+  margin-top: 3rem;
+  margin-inline: 5rem;
+  text-align: center;
+}
+.classnewdiv p {
+  font-size: 2rem;
+  font-weight: 500;
+}
+#divButtons {
+  margin: 7rem;
+  text-align: center;
+}
+#divButtons p {
+  display: block;
+  margin: 1rem;
+}
+
+.button1 {
+  display: inline-block;
+  margin-right: 2rem;
+  margin-top: 2rem;
+  background: #0ff;
+  color: #101023;
+  border-color: #0ff;
+  border-width: 1px;
+  border-radius: 6px;
+  box-shadow: none;
+  font-size: 20px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+}
+.button2 {
+  display: inline-block;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  background: #0ff;
+  color: #101023;
+  border-color: #0ff;
+  border-width: 1px;
+  border-radius: 6px;
+  box-shadow: none;
+  font-size: 20px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
 }

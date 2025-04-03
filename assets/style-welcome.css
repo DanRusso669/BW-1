@@ -65,29 +65,28 @@ button {
 
 .custom-checkbox {
   display: inline-block;
-  align-items: center;
-  font-size: 20px;
+  font-size: 15px;
   cursor: pointer;
   color: white;
-  font-weight: 400;
-  line-height: 25px;
+  font-weight: 600;
 }
 
 .checkmark {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border: 3px solid white;
   display: inline-block;
   margin-right: 10px;
   background-color: transparent;
-  position: relative; /* Impostiamo il posizionamento relativo */
+  position: relative;
+  vertical-align: middle; /*era un semplicissimo comando per centrare 😢*/
 }
 
-/* Aggiunge la spunta centrata quando la checkbox è selezionata */
 .custom-checkbox input:checked + .checkmark::before {
-  content: "✔"; /* Carattere spunta */
+  /*Quando l'<input> (checkbox) viene selezionato (:checked), lo stile applicato al ::before della .checkmark cambia.*/
+  content: "✔";
   color: white;
-  font-size: 18px;
+  font-size: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -95,5 +94,5 @@ button {
 }
 
 .custom-checkbox input:checked + .checkmark {
-  background-color: #c2128d;
+  background-color: #c2128d; /*l'ho messo qui e non insieme a quella prima perchè sennò non avrebbe riempieto tutto lo sfondo ma solo lo spazio occupato dall'icona*/
 }
