@@ -20,7 +20,9 @@ footer {
   margin-top: 8rem;
 }
 button {
+  vertical-align: middle;
   width: 20rem;
+  max-height: 10rem;
   height: 3.5rem;
   border-radius: 30px;
   background: #be92922b;
