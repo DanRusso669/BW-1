@@ -1,12 +1,10 @@
-body {
-  margin-inline: 5rem;
-  margin-block: 5rem;
-  margin-bottom: 0;
-}
-
 main {
   text-align: center;
   padding-top: 0;
+}
+body {
+  margin-inline: 5rem;
+  margin-top: 2rem;
 }
 main h1 {
   font-size: 40px;
@@ -36,6 +34,9 @@ footer img {
   margin-inline: 5rem;
   margin-block: 5rem;
 }
+header {
+  overflow: hidden;
+}
 
 /* STILE DEL TIMER */
 svg {
@@ -52,4 +53,27 @@ svg {
 }
 #progressBar {
   animation: 30s circletimer linear;
+}
+#logo {
+  float: left;
+  padding-top: 1rem;
+}
+#cerchio {
+  float: right;
+  position: relative;
+}
+#pCerchio {
+  position: absolute;
+  z-index: 1;
+  top: 29%;
+  left: 35%;
+
+  font-size: 8px;
+}
+#middleText {
+  font-size: 35px;
+  margin-bottom: 0px;
+}
+#firstP {
+  margin-bottom: 0;
 }
