@@ -80,3 +80,11 @@ svg {
 #firstP {
   margin-bottom: 0;
 }
+
+ 
+#benchmark {
+  max-width: 80%;
+  margin-left: 200px;
+  margin-right: 200px;
+
+}
