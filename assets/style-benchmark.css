@@ -45,12 +45,15 @@ svg {
 
 @keyframes circletimer {
   0% {
-    stroke-dashoffset: 0;
+    stroke-dasharray: 565px 800px;
+    stroke-dashoffset: 0px;
   }
   100% {
-    stroke-dashoffset: 565.2;
+    stroke-dasharray: 565px 800px;
+    stroke-dashoffset: -565px;
   }
 }
+
 #progressBar {
   animation: 30s circletimer linear;
 }
