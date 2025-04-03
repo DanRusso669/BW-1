@@ -12,9 +12,11 @@ body {
   background-image: url("./bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  margin-inline: 5rem;
+  margin-block: 3rem;
 }
 #logo {
-  width: 200px;
+  width: 150px;
   height: auto;
   margin-bottom: 6rem;
 }
