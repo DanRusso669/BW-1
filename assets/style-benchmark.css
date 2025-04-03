@@ -53,3 +53,11 @@ svg {
 #progressBar {
   animation: 30s circletimer linear;
 }
+
+ 
+#benchmark {
+  max-width: 80%;
+  margin-left: 200px;
+  margin-right: 200px;
+
+}
