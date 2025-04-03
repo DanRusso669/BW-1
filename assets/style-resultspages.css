@@ -23,3 +23,9 @@ button {
 footer {
   text-align: center;
 }
+
+/* STILE DEL DONUT CHART */
+
+.donut {
+  transform: rotate(-90deg);
+}
