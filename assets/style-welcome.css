@@ -1,12 +1,13 @@
 body {
   margin-inline: 5rem;
-  margin-block: 5rem;
+  margin-block: 3rem;
   text-align: left;
   font-size: 25px;
 }
 
 header {
   text-align: left;
+  margin-top: 4rem;
 }
 /* header img {
   width: 200px;
