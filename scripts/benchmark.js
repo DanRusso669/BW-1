@@ -99,8 +99,3 @@ window.onload = function () {
   //TO DO: collezionare il numero di risposte giuste in un array.
 };
 //that's all folks
-
-function stampaRisposte() {
-  console.log(correctAnswers);
-}
-stampaRisposte();
