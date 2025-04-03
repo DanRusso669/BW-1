@@ -25,9 +25,9 @@ window.onload = function () {
     .catch((error) => console.error("Errore nel caricamento del file:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
   
     
-    function consoleQuestion() {  //come detto prima questa funzione è utile solo per noi, per capire quali domande usciranno
+    function consoleQuestion() {  //ci fa capire quali domande usciranno
     for (let i = 0; i < allQuestions.length; i++) {
-      console.log("tipo:", allQuestions[i].type, "\n", allQuestions[i].question);
+      console.log("tipo:", allQuestions[i].type, allQuestions[i].correct_answer, "\n", allQuestions[i].question);
     }
   }
 
@@ -40,8 +40,13 @@ window.onload = function () {
     answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]; //prendo tutte le risposte
     if (currentQuestion.type !=="boolean"){ 
      mixedAnswer = shuffleArray(answers);
-    }else{
-      mixedAnswer =answers;
+    }else if (currentQuestion.correct_answer=== "False"){
+mixedAnswer[0] =answers[1];
+mixedAnswer[1] =answers[0];
+
+      
+    }else {
+      mixedAnswer= answers;
     }
   
     h4.innerText = `QUESTION ${qstNumber + 1} /10`;
@@ -55,7 +60,7 @@ window.onload = function () {
     
 
     
-      button.addEventListener("click", function () { //TO DO viene causato un errore perchè l'evento è fuori dal for che lo crea
+      button.addEventListener("click", function () { 
         let userResponse = button.innerText;
         answerVerify(userResponse, currentQuestion.correct_answer);
         qstNumber++;
@@ -77,6 +82,7 @@ window.onload = function () {
   function answerVerify(user, right) {  //controlla se le risposta è corretta
     if (user === right) {
       correctAnswers++;
+      console.log (correctAnswers)
     }
   }
   function theEnd() {
