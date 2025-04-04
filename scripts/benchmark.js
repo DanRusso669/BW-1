@@ -87,6 +87,7 @@ window.onload = function () {
   }
   document.addEventListener ("timerDown", () =>{
     console.log ("tempo scaduto")
+    qstNumber++;
   loadQuestion();
   });
 
