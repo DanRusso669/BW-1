@@ -107,13 +107,36 @@ window.onload = function () {
     // Ferma il timer precedente se c'era
     clearTimeout(timerTimeout);
 
-    remainingTime = 30;
+    remainingTime = 3;
     const timerText = document.getElementById("middleText");
 
     function updateTimer() {
       // Ogni secondo aggiorna il timer
       if (remainingTime <= 0) {
         timerText.innerText = "00";
+        progressBar.style.animation = "none";
+
+        clearTimeout(timerTimeout);
+        qstNumber++;
+        if (qstNumber === 10) {
+          let trasferimento = correctAnswers;
+          // Imposta una variabile";
+
+          // Crea un URL con il parametro
+          let url = "resultspages.html?risposte=" + encodeURIComponent(trasferimento);
+
+          // Reindirizza a secondo.html con il parametro nell'URL
+          window.location.href = url;
+          // window.location.href = "resultspages.html";
+        }
+        loadQuestion();
+
+        // Forza il reflow (rende l'elemento visibile di nuovo)
+        void progressBar.offsetHeight;
+
+        setTimeout(() => {
+          progressBar.style.animation = "circletimer 30s linear forwards";
+        }, 50);
       } else {
         timerText.innerText = remainingTime.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
         remainingTime--;
