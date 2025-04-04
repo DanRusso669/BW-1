@@ -107,7 +107,7 @@ window.onload = function () {
     // Ferma il timer precedente se c'era
     clearTimeout(timerTimeout);
 
-    remainingTime = 3;
+    remainingTime = 30;
     const timerText = document.getElementById("middleText");
 
     function updateTimer() {
