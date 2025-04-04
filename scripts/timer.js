@@ -3,6 +3,7 @@ const sec = 10;
 let futureTime;
 
 const setTime = sec * 1000; // trasforma i secondi in millisec
+const timerDown = new Event("timerDown");
 
 document.addEventListener ("timerStart", (e) =>{
   console.log ("tempo iniziato")
@@ -18,10 +19,9 @@ const countDownTimer = function () {
   const currentTime = Date.now(); // riprende i millisec dal 01/01/70, ma essendo dentro la funzione che si ripete a loop, cambiano col passare dei secondi reali
   const remainingTime = futureTime - currentTime; // calcola la differenza col tempo che passa
   const timerText = document.getElementById("middleText"); // selezioniamo la variabile del testo
-  const timerDown = new Event("timerDown");
 
-  if (remainingTime <= 0) {
-    // se i tempo rimanente è uguale a 0
+
+  if (remainingTime <= 0) { // se i tempo rimanente è uguale a 0
     clearInterval(timerLoop); // Ferma il timer
     
     document.dispatchEvent( new Event ("timerDown")); //invia evento

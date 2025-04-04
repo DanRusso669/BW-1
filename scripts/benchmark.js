@@ -32,8 +32,7 @@ window.onload = function () {
   }
  
 
-  function loadQuestion() {
-    //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone
+  function loadQuestion() { //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone
 
     currentQuestion = allQuestions[qstNumber]; //prendo la domanda corrente
     const question = document.getElementById("question");
@@ -72,10 +71,9 @@ window.onload = function () {
       btnArea.appendChild(button);
     }
 
-    // btnArea.appendChild(buttonTrue);
-    // btnArea.appendChild(buttonFalse);
+   
   }
-  document.addEventListener ("timerDown", () =>{
+  document.addEventListener ("timerDown", (e) =>{
     console.log ("tempo scaduto")
   loadQuestion();
   });
