@@ -107,7 +107,7 @@ window.onload = function () {
 
         setTimeout(() => {
           progressBar.style.animation = "circletimer 30s linear forwards";
-        }, 3000);
+        }, 1000);
 
         // let userResponse = button.innerText;
         console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
@@ -116,7 +116,7 @@ window.onload = function () {
         qstNumber++;
 
         if (qstNumber < allQuestions.length) {
-          setTimeout(loadQuestion, 3000);
+          setTimeout(loadQuestion, 1000);
         } else {
           console.log(correctAnswers);
           let trasferimento = correctAnswers;
