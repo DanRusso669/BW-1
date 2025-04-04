@@ -1,7 +1,18 @@
 // SCRIPT DEL DONUT CHART
-const rightAnswers = 4;
-const wrongAnswers = 6; // risposte sbagliate
+
+// Crea un oggetto URL per ottenere l'URL corrente
+let url = new URL(window.location.href);
+
+// Usa URLSearchParams per ottenere il parametro "nome"
+let params = new URLSearchParams(url.search);
+
+// Recupera il valore del parametro "nome"
+// let nome = params.get("risposte");
+
+const rightAnswers = params.get("risposte");
+
 const numberOfQuestions = 10; // numero domande
+const wrongAnswers = numberOfQuestions - rightAnswers; // risposte sbagliate
 
 const rightAnswersSlice = Math.floor((rightAnswers / numberOfQuestions) * 100); // percentuale delle risposte giuste senza simbolo %
 const wrongAnswersSlice = Math.floor((wrongAnswers / numberOfQuestions) * 100); // percentuale delle risposte sbagliate senza simbolo %
@@ -47,3 +58,11 @@ if (rightAnswers >= 6) {
   secondaP.style.marginLeft = "1rem";
   terzaP.innerText = "";
 }
+
+// let url = new URL(window.location.href);
+// console.log(url);
+// let params = new URLSearchParams(url.search);
+// console.log(params);
+// params.forEach((value, key) => {
+//   console.log(`${key}: ${value}`);
+// });

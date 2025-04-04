@@ -68,7 +68,17 @@ window.onload = function () {
         if (qstNumber < allQuestions.length) {
           loadQuestion();
         } else {
-          theEnd();
+          console.log(correctAnswers);
+          let trasferimento = correctAnswers;
+          // Imposta una variabile";
+
+          // Crea un URL con il parametro
+          let url = "resultspages.html?risposte=" + encodeURIComponent(trasferimento);
+
+          // Reindirizza a secondo.html con il parametro nell'URL
+          window.location.href = url;
+          console.log("Queste sono le risposte giuste:", trasferimento);
+          setTimeout(theEnd, 5000);
         }
       });
       btnArea.appendChild(button);
