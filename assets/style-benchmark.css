@@ -103,3 +103,7 @@ svg {
 .wrong {
   background-color: red;
 }
+
+button.blink {
+  animation: blinkAnimation 1s infinite;
+}
