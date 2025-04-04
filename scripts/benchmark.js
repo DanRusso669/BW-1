@@ -4,6 +4,7 @@ window.onload = function () {
   const h1 = document.querySelector("h1");
   const h4 = document.querySelector("h4");
   const btnArea = document.getElementById("btnArea");
+  const timerStart =new Event ("timerStart");
 
   let qstNumber = 0; //mi serve per avanzare correttamente nell'array
   let allQuestions = []; //array di oggetti in cui metterò le domande
@@ -29,6 +30,7 @@ window.onload = function () {
       console.log(`tipo: ${allQuestions[i].type},  corretta: ${allQuestions[i].correct_answer} \n ${allQuestions[i].question}`);
     }
   }
+ 
 
   function loadQuestion() {
     //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone
@@ -41,27 +43,23 @@ window.onload = function () {
     answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]; //prendo tutte le risposte
     if (currentQuestion.type !== "boolean") {
       mixedAnswer = shuffleArray(answers);
-    } else if (currentQuestion.correct_answer === "False") {
-      //se la risposta "false" è quella vera, in automatico la metterebbe per primoe e in questo modo glielo impediamo spostandola come seconda posizione
+    } else if (currentQuestion.correct_answer === "False") { //se la risposta "false" è quella vera, in automatico la metterebbe per primoe e in questo modo glielo impediamo spostandola come seconda posizione
       mixedAnswer[0] = answers[1];
       mixedAnswer[1] = answers[0];
-    } else {
-      //se è boolean e la risposta giusta è "true"; allora non fare alcun cambiamento sulla posizione
+    } else { //se è boolean e la risposta giusta è "true"; allora non fare alcun cambiamento sulla posizione
       mixedAnswer = answers;
     }
-
+    document.dispatchEvent(new Event("timerStart"));
     elenco.innerText = `QUESTION ${qstNumber + 1} /10`;
     btnArea.innerHTML = "";
 
-    for (let i = 0; i < mixedAnswer.length; i++) {
-      // i bottoni vengono creati sulla base delle risposte mischiate
+    for (let i = 0; i < mixedAnswer.length; i++) {  // i bottoni vengono creati sulla base delle risposte mischiate
 
       let button = document.createElement("button");
       button.innerText = mixedAnswer[i];
 
       button.addEventListener("click", function () {
-        let userResponse = button.innerText;
-        console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
+        let userResponse = button.innerText;// console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
         answerVerify(userResponse, currentQuestion.correct_answer);
         console.log(correctAnswers);
         qstNumber++;
@@ -87,6 +85,10 @@ window.onload = function () {
     // btnArea.appendChild(buttonTrue);
     // btnArea.appendChild(buttonFalse);
   }
+  document.addEventListener ("timerDown", () =>{
+    console.log ("tempo scaduto")
+  loadQuestion();
+  });
 
   function answerVerify(user, correct) {
     //controlla se le risposta è corretta
@@ -106,6 +108,12 @@ window.onload = function () {
     return array;
   }
 
-  //TO DO: collezionare il numero di risposte giuste in un array.
+  
+
+
+
+function stampaRisposte() {
+  console.log(correctAnswers);
+}
+stampaRisposte();
 };
-//that's all folks
