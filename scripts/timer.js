@@ -1,4 +1,4 @@
-// const sec = 10;
+// const sec = 3;
 const sec = 30;
 let futureTime;
 const setTime = sec * 1000; // trasforma i secondi in millisec
@@ -21,7 +21,7 @@ const countDownTimer = function () {
   const timerText = document.getElementById("middleText"); // selezioniamo la variabile del testo
   const timerDown = new Event("timerDown");
 
-timerCircle();
+
 
 
   if (remainingTime <= 0) {
@@ -36,21 +36,6 @@ timerCircle();
     timerText.innerText = secs; // Mostra il tempo rimanente
   }
 };
-function timerCircle (){
 
-  const progressBar = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  progressBar.setAttribute("id", "progressBar");
-progressBar.setAttribute("r", "90");
-progressBar.setAttribute("cx", "100");
-progressBar.setAttribute("cy", "100");
-progressBar.setAttribute("stroke", "#00ffff");
-progressBar.setAttribute("stroke-width", "20");
-progressBar.setAttribute("stroke-linecap", "butt");
-progressBar.setAttribute("fill", "transparent");
-progressBar.setAttribute("stroke-dasharray", "565.2px");
-progressBar.setAttribute("stroke-dashoffset", "565.2px");
-svg.appendChild(progressBar);
-
-}
 
 let timerLoop = setInterval(countDownTimer, 1000);
