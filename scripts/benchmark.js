@@ -4,7 +4,7 @@ window.onload = function () {
   const h1 = document.querySelector("h1");
   const h4 = document.querySelector("h4");
   const btnArea = document.getElementById("btnArea");
-  const timerStart =new Event ("timerStart");
+  const timerStart = new Event("timerStart");
 
   let qstNumber = 0; //mi serve per avanzare correttamente nell'array
   let allQuestions = []; //array di oggetti in cui metterò le domande
@@ -13,16 +13,39 @@ window.onload = function () {
   let mixedAnswer = []; //risposte con posizione randomizzata
   let correctAnswers = 0; //contatore di risposte corrette
 
-  fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande genrate dal server tramite API
-    .then(response => response.json()) //converto le info json trovate nel link in formato js
-    .then(data => {
-      allQuestions = data.results; //metto tutte le domande del file json, con tutte le info, nell'array di oggetti creato prima
+  const n = parseInt(localStorage.getItem("numero"));
 
-      console.log("domande raccolte: ", allQuestions); //conferma
-      loadQuestion(); //carico la funzione primaria di gererazione domande
-      consoleQuestion(); //carica la funzione del console log, utile per verificare quali domande compariranno.
-    })
-    .catch(error => console.error("Errore nel caricamento del file:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
+  if (n === 1) {
+    fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande genrate dal server tramite API
+      .then((response) => response.json()) //converto le info json trovate nel link in formato js
+      .then((data) => {
+        allQuestions = data.results; //metto tutte le domande del file json, con tutte le info, nell'array di oggetti creato prima
+        console.log("domande raccolte: ", allQuestions); //conferma
+        loadQuestion(); //carico la funzione primaria di gererazione domande
+        consoleQuestion(); //carica la funzione del console log, utile per verificare quali domande compariranno.
+      })
+      .catch((error) => console.error("Errore nel caricamento del file:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
+  } else if (n === 2) {
+    fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=medium")
+      .then((response) => response.json())
+      .then((data) => {
+        allQuestions = data.results;
+        console.log("domande raccolte: ", allQuestions);
+        loadQuestion();
+        consoleQuestion();
+      })
+      .catch((error) => console.error("Errore nel caricamento del file:", error));
+  } else if (n === 3) {
+    fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=hard")
+      .then((response) => response.json())
+      .then((data) => {
+        allQuestions = data.results;
+        console.log("domande raccolte: ", allQuestions);
+        loadQuestion();
+        consoleQuestion();
+      })
+      .catch((error) => console.error("Errore nel caricamento del file:", error));
+  }
 
   function consoleQuestion() {
     //ci fa capire quali domande usciranno
@@ -30,7 +53,6 @@ window.onload = function () {
       console.log(`tipo: ${allQuestions[i].type},  corretta: ${allQuestions[i].correct_answer} \n ${allQuestions[i].question}`);
     }
   }
- 
 
   function loadQuestion() {
     //funzione principale,che si avvia quando si fetcha e poi richiamata ogni volta che si preme il bottone
@@ -43,23 +65,26 @@ window.onload = function () {
     answers = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers]; //prendo tutte le risposte
     if (currentQuestion.type !== "boolean") {
       mixedAnswer = shuffleArray(answers);
-    } else if (currentQuestion.correct_answer === "False") { //se la risposta "false" è quella vera, in automatico la metterebbe per primoe e in questo modo glielo impediamo spostandola come seconda posizione
+    } else if (currentQuestion.correct_answer === "False") {
+      //se la risposta "false" è quella vera, in automatico la metterebbe per primoe e in questo modo glielo impediamo spostandola come seconda posizione
       mixedAnswer[0] = answers[1];
       mixedAnswer[1] = answers[0];
-    } else { //se è boolean e la risposta giusta è "true"; allora non fare alcun cambiamento sulla posizione
+    } else {
+      //se è boolean e la risposta giusta è "true"; allora non fare alcun cambiamento sulla posizione
       mixedAnswer = answers;
     }
     document.dispatchEvent(new Event("timerStart"));
     elenco.innerText = `QUESTION ${qstNumber + 1} /10`;
     btnArea.innerHTML = "";
 
-    for (let i = 0; i < mixedAnswer.length; i++) {  // i bottoni vengono creati sulla base delle risposte mischiate
+    for (let i = 0; i < mixedAnswer.length; i++) {
+      // i bottoni vengono creati sulla base delle risposte mischiate
 
       let button = document.createElement("button");
       button.innerText = mixedAnswer[i];
 
       button.addEventListener("click", function () {
-        let userResponse = button.innerText;// console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
+        let userResponse = button.innerText; // console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
         answerVerify(userResponse, currentQuestion.correct_answer);
         console.log(correctAnswers);
         qstNumber++;
@@ -85,9 +110,9 @@ window.onload = function () {
     // btnArea.appendChild(buttonTrue);
     // btnArea.appendChild(buttonFalse);
   }
-  document.addEventListener ("timerDown", () =>{
-    console.log ("tempo scaduto")
-  loadQuestion();
+  document.addEventListener("timerDown", () => {
+    console.log("tempo scaduto");
+    loadQuestion();
   });
 
   function answerVerify(user, correct) {
@@ -108,12 +133,8 @@ window.onload = function () {
     return array;
   }
 
-  
-
-
-
-function stampaRisposte() {
-  console.log(correctAnswers);
-}
-stampaRisposte();
+  function stampaRisposte() {
+    console.log(correctAnswers);
+  }
+  stampaRisposte();
 };
