@@ -12,6 +12,11 @@ window.onload = function () {
   let mixedAnswer = []; //risposte con posizione randomizzata
   let correctAnswers = 0; //contatore di risposte corrette
 
+  let timerTimeout; // Variabile per il setInterval del timer
+  let remainingTime; // Variabile per tenere traccia del tempo rimanente
+  const sec = 30; // 30 secondi
+  const setTime = sec * 1000;
+
   fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande genrate dal server tramite API
     .then(response => response.json()) //converto le info json trovate nel link in formato js
     .then(data => {
@@ -53,6 +58,8 @@ window.onload = function () {
     elenco.innerText = `QUESTION ${qstNumber + 1} /10`;
     btnArea.innerHTML = "";
 
+    startTimer();
+
     for (let i = 0; i < mixedAnswer.length; i++) {
       // i bottoni vengono creati sulla base delle risposte mischiate
 
@@ -60,6 +67,17 @@ window.onload = function () {
       button.innerText = mixedAnswer[i];
 
       button.addEventListener("click", function () {
+        progressBar.style.animation = "none";
+
+        clearTimeout(timerTimeout);
+
+        // Forza il reflow (rende l'elemento visibile di nuovo)
+        void progressBar.offsetHeight;
+
+        setTimeout(() => {
+          progressBar.style.animation = "circletimer 30s linear forwards";
+        }, 50);
+
         let userResponse = button.innerText;
         console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
         answerVerify(userResponse, currentQuestion.correct_answer);
@@ -83,9 +101,27 @@ window.onload = function () {
       });
       btnArea.appendChild(button);
     }
+  }
 
-    // btnArea.appendChild(buttonTrue);
-    // btnArea.appendChild(buttonFalse);
+  function startTimer() {
+    // Ferma il timer precedente se c'era
+    clearTimeout(timerTimeout);
+
+    remainingTime = 30;
+    const timerText = document.getElementById("middleText");
+
+    function updateTimer() {
+      // Ogni secondo aggiorna il timer
+      if (remainingTime <= 0) {
+        timerText.innerText = "00";
+      } else {
+        timerText.innerText = remainingTime.toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
+        remainingTime--;
+        timerTimeout = setTimeout(updateTimer, 1000);
+      }
+    }
+
+    updateTimer(); // Avvia il timer
   }
 
   function answerVerify(user, correct) {
@@ -109,3 +145,26 @@ window.onload = function () {
   //TO DO: collezionare il numero di risposte giuste in un array.
 };
 //that's all folks
+
+// const sec = 30;
+
+// const setTime = sec * 1000; // trasforma i secondi in millisec
+// const startTime = Date.now(); // prende i millesec dal 01/01/70
+// const futureTime = startTime + setTime; //somma i due valori sopra
+
+// const countDownTimer = function () {
+//   const currentTime = Date.now(); // riprende i millisec dal 01/01/70, ma essendo dentro la funzione che si ripete a loop, cambiano col passare dei secondi reali
+//   const remainingTime = futureTime - currentTime; // calcola la differenza col tempo che passa
+//   const timerText = document.getElementById("middleText"); // selezioniamo la variabile del testo
+
+//   if (remainingTime <= 0) {
+//     // se i tempo rimanente è uguale a 0
+//     clearInterval(timerLoop); // Ferma il timer
+//     timerText.innerText = "00"; // Timer scaduto quindi rimettiamo 00 sul testo
+//   } else {
+//     const secs = Math.floor((remainingTime / 1000) % 60).toLocaleString("en-US", { minimumIntegerDigits: 2, useGrouping: false });
+//     timerText.innerText = secs; // Mostra il tempo rimanente
+//   }
+// };
+
+// const timerLoop = setInterval(countDownTimer);

@@ -61,7 +61,9 @@ svg {
 }
 
 #progressBar {
-  animation: 30s circletimer linear;
+  stroke-dasharray: 565px 800px;
+  stroke-dashoffset: 0;
+  animation: circletimer 30s linear forwards;
 }
 #logo {
   float: left;
