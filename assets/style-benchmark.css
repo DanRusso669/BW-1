@@ -19,7 +19,7 @@ footer {
   text-align: center;
   margin-top: 8rem;
 }
-button:hover {
+.normal:hover {
   background-color: #c2018e;
 }
 button {
@@ -93,4 +93,13 @@ svg {
   max-width: 80%;
   margin-left: 200px;
   margin-right: 200px;
+}
+.colorh4 {
+  color: #c2018e;
+}
+.correct {
+  background-color: green;
+}
+.wrong {
+  background-color: red;
 }

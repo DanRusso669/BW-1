@@ -22,34 +22,34 @@ window.onload = function () {
 
   if (n === 1) {
     fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=easy") //mi collego alle domande genrate dal server tramite API
-      .then(response => response.json()) //converto le info json trovate nel link in formato js
-      .then(data => {
+      .then((response) => response.json()) //converto le info json trovate nel link in formato js
+      .then((data) => {
         allQuestions = data.results; //metto tutte le domande del file json, con tutte le info, nell'array di oggetti creato prima
         console.log("domande raccolte: ", allQuestions); //conferma
         loadQuestion(); //carico la funzione primaria di gererazione domande
         consoleQuestion(); //carica la funzione del console log, utile per verificare quali domande compariranno.
       })
-      .catch(error => console.error("Errore nel caricamento del file:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
+      .catch((error) => console.error("Errore nel caricamento del file:", error)); //cattura l'errore in caso di fallimento con il collegamento al server
   } else if (n === 2) {
     fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=medium")
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         allQuestions = data.results;
         console.log("domande raccolte: ", allQuestions);
         loadQuestion();
         consoleQuestion();
       })
-      .catch(error => console.error("Errore nel caricamento del file:", error));
+      .catch((error) => console.error("Errore nel caricamento del file:", error));
   } else if (n === 3) {
     fetch("https://opentdb.com/api.php?amount=10&category=18&difficulty=hard")
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         allQuestions = data.results;
         console.log("domande raccolte: ", allQuestions);
         loadQuestion();
         consoleQuestion();
       })
-      .catch(error => console.error("Errore nel caricamento del file:", error));
+      .catch((error) => console.error("Errore nel caricamento del file:", error));
   }
 
   function consoleQuestion() {
@@ -79,7 +79,7 @@ window.onload = function () {
       mixedAnswer = answers;
     }
     document.dispatchEvent(new Event("timerStart"));
-    elenco.innerText = `QUESTION ${qstNumber + 1} /10`;
+    elenco.innerHTML = `QUESTION ${qstNumber + 1} <span class = "colorh4"> /10 </span>`;
     btnArea.innerHTML = "";
 
     startTimer();
@@ -88,10 +88,19 @@ window.onload = function () {
       // i bottoni vengono creati sulla base delle risposte mischiate
 
       let button = document.createElement("button");
+      button.className = "normal";
       button.innerText = mixedAnswer[i];
 
       button.addEventListener("click", function () {
+        let userResponse = button.innerText;
         progressBar.style.animation = "none";
+        if (userResponse === currentQuestion.correct_answer) {
+          button.style.pointerEvents = "none";
+          button.className = "correct";
+        } else {
+          button.style.pointerEvents = "none";
+          button.className = "wrong";
+        }
 
         clearTimeout(timerTimeout);
 
@@ -102,13 +111,14 @@ window.onload = function () {
           progressBar.style.animation = "circletimer 30s linear forwards";
         }, 50);
 
-        let userResponse = button.innerText;
+        // let userResponse = button.innerText;
         console.log(`Risposta scelta: ${userResponse}, risposta corretta: ${currentQuestion.correct_answer}`);
         answerVerify(userResponse, currentQuestion.correct_answer);
         console.log(correctAnswers);
         qstNumber++;
+
         if (qstNumber < allQuestions.length) {
-          loadQuestion();
+          setTimeout(loadQuestion, 5000);
         } else {
           console.log(correctAnswers);
           let trasferimento = correctAnswers;
