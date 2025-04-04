@@ -1,0 +1,35 @@
+#pContainer {
+  text-align: center;
+  margin: 3rem;
+  font-size: 3rem;
+  font-weight: 600;
+  font-family: "Outfit", sans-serif;
+}
+#buttonContainer {
+  text-align: center;
+}
+
+#buttonContainer button {
+  margin-inline: 2rem;
+  display: inline-block;
+  margin-top: 3rem;
+  color: #101023;
+  border-width: 1px;
+  border-radius: 6px;
+  font-size: 30px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+  width: 240px;
+  height: 68px;
+  cursor: pointer;
+  font-optical-sizing: auto;
+  background-color: #00ffff;
+  border: 1px solid #00ffff;
+  box-shadow: 0px 0px 18px#00ffff;
+}
+
+#buttonContainer button:hover {
+  background-color: #c2018e;
+  border: 1px solid #c2018e;
+  box-shadow: 0px 0px 18px #c2018e;
+}

@@ -59,12 +59,22 @@ function submitFeedBack() {
   newDiv.classList.add("classnewdiv");
   let newP = document.createElement("p");
 
+  let newDiv2 = document.createElement("div");
+  newDiv2.classList.add("classnewdiv2");
+  let img = document.createElement("img");
+
   if (nStelle < 6) {
     newP.innerText = "Thanks for your feedback, you left a negative review, we will try to improve😢.";
+    img.src = "../assets/fotomeno6.png";
+    img.alt = "no good";
   } else if (nStelle < 9) {
     newP.innerText = "Thanks for your feedback, you left a positive review 😊.";
+    img.src = "../assets/foto7-9.png";
+    img.alt = "good";
   } else {
     newP.innerText = "Thanks for your feedback, you left a very positive review 🤩.";
+    img.src = "../assets/foto10.png";
+    img.alt = "yeah";
   }
 
   let newP2 = document.createElement("p");
@@ -78,19 +88,22 @@ function submitFeedBack() {
   button1.innerText = "Try the exam again";
 
   button1.addEventListener("click", function () {
-    window.location.href = "./index.html";
+    window.location.href = "./volevi.html";
   });
 
   let button2 = document.createElement("button");
   button2.classList.add("button2");
-  button2.innerText = "Epicode Courses";
+  button2.innerText = "Epicode Lms";
 
   button2.addEventListener("click", function () {
-    window.open("https://epicode.com/it/corsi/", "_blank");
+    window.open("https://app.epicode.com/auth/login");
   });
 
   newDiv.appendChild(newP);
   document.body.appendChild(newDiv);
+
+  newDiv2.appendChild(img);
+  document.body.appendChild(newDiv2);
 
   divButtons.appendChild(newP2);
   divButtons.appendChild(button1);

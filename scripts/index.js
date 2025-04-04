@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     if (checkbox.checked) {
-      window.location.href = "./benchmark.html";
+      window.location.href = "./difficultypage.html";
     } else {
       conditionError.style.display = "block";
     }

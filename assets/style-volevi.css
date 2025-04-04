@@ -1,0 +1,25 @@
+div {
+  text-align: center;
+  margin: 3rem;
+}
+.gif {
+  height: auto;
+  image-rendering: auto;
+  width: 700px;
+}
+button {
+  width: 240px;
+  height: 68px;
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: bold;
+  font-size: 23px;
+  background-color: #00ffff;
+  border: 1px solid #00ffff;
+  cursor: pointer;
+  color: #101023;
+  border-width: 1px;
+  border-radius: 6px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+}
